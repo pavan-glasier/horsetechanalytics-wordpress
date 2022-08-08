@@ -1,0 +1,20 @@
+.top-navbar {padding-top: 20px; padding-bottom: 20px; }
+.top-navbar  a { color: #fff;}
+.top-navbar i {margin-right: 14px;}
+.top-navbar ul li:first-child {border-right: 1px solid #ccc;padding-right: 20px;}
+.top-navbar ul li:last-child {padding-left: 20px;}
+.top-navbar ul {display: flex;}
+.bordr-bottom {border-bottom: 1px solid #866CBA;}
+.right-top {text-align: right; }
+.right-top ul {display: flex; justify-content: end;}
+.right-top ul li {margin-top: 17px; }
+.right-top ul li a { color: #fff; padding: 9px 13px; border-radius: 30px; border: 2px solid #fff;}
+.left-about {background-image: url("../img/about-bg.png"); position: relative; display: block; background-size: 100%; background-repeat: no-repeat; background-position: left;}
+.left-about img {width: 100%; padding: 100px}
+.right-about {margin-top: 30px;}
+.right-about h3 {font-weight: bolder; color: #5C56AA; margin-bottom: 20px;}
+.right-about span {font-size: 20px; font-weight: 700; color: #444444;}
+.right-about p {font-size: 16px; margin-top: 20px; text-align: justify; line-height: 33px; margin-bottom: 30px;}
+.right-about ul {list-style-type: none;}
+.right-about ul li {margin-bottom: 20px; color: #545454; font-size: 18px; font-weight: 700;}
+.right-about ul li img {width: 5%; margin-right: 15px;}
