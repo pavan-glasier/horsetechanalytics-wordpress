@@ -16,56 +16,127 @@
          <div class="row">
             <div class="col-lg-4 col-md-6">
                <div class="footer-widget footer-widget-1">
-                  <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="footer-logo"><img src="<?php echo esc_url( get_template_directory_uri() );?>/img/footer-logo.png" class="footer-logo" alt="logo"></a>
-                  <p class="text-white mt-30">Our facilities transcend various geographical boundaries. They include various trade associations, retail businesses, medical research
-                     institutions, media companies, Ecommerce, and data entry
-                  </p>
-                  <p class="text-white mt-30"><strong>Email :</strong> hrd1@horsetechanalytics.com </p>
+                  <?php $footer_logo = get_field('logo', 'option');
+                  if (!empty($footer_logo['url'])) { ?>
+                     <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="footer-logo">
+                        <img src="<?php echo esc_url( $footer_logo['url'] );?>" class="footer-logo" 
+                        alt="<?php echo esc_attr($footer_logo['alt']); ?>">
+                     </a>
+                  <?php } ?>
+
+                  <?php $about_content = get_field('about_content', 'option'); 
+                  if (!empty($about_content)) { ?>
+                     <p class="text-white mt-30">
+                        <?php echo $about_content; ?>
+                     </p>
+                  <?php } ?>
+
+                  <?php $email_id = get_field('email_id', 'option'); 
+                  if (!empty($email_id)) : ?>
+                  <p class="text-white mt-30"><strong>Email :</strong> <?php echo $email_id;?> </p>
+                  <?php endif; ?>
+
+                  <?php $phone_no = get_field('phone_no', 'option'); 
+                  if (!empty($phone_no)) : ?>
+                  <p class="text-white mt-0"><strong>Phone :</strong> <?php echo $phone_no;?> </p>
+                  <?php endif; ?>
                </div>
             </div>
             <div class="col-lg-3 col-md-4 col-sm-6">
                <div class="footer-widget footer-widget-2 mt-2">
-                  <h5 class="text-white position-relative mb-5 widget-title">Quick Links</h5>
-                  <ul class="footer-nav">
-                     <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a></li>
-                     <li><a href="aboutus.php">About Us</a></li>
-                     <li><a href="consumer.php">Product</a></li>
-                     <li><a href="technology.php">Technology</a></li>
-                     <li><a href="#">Blog</a></li>
-                     <li><a href="career.php">Career</a></li>
-                  </ul>
+               <?php $col_2_heading = get_field('col_2_heading', 'option'); 
+                  if (!empty($col_2_heading)) :  ?>
+                  <h5 class="text-white position-relative mb-5 widget-title"><?php echo $col_2_heading;?></h5>
+                  <?php endif; ?>
+                  <?php $quick_links = get_field('quick_links', 'option'); ?>
+						   <?php 
+						   wp_nav_menu( array(
+                        'theme_location'    => $quick_links['value'],
+                        'container'         => 'ul',
+                        'menu_class'        => 'footer-nav',
+                           )
+                     ); ?>
                </div>
             </div>
             <div class="col-lg-4 col-md-8">
                <div class="footer-widget footer-sb-widget mt-2">
-                  <h5 class="text-white position-relative mb-5 widget-title">Contact us</h5>
+                  <?php $col_3_heading = get_field('col_3_heading', 'option'); 
+                  if (!empty($col_3_heading)) :  ?>
+                  <h5 class="text-white position-relative mb-5 widget-title"><?php echo $col_3_heading;?></h5>
+                  <?php endif; ?>
                   <div class="fotter-form">
-                     <form id="contactForm" class="footer-sb-form position-relative">
-                        <input type="text" id="contact-name" value="" placeholder="Name*" class="mt-2"><span id="contact-name-error"></span>
-                        <input type="text" id="contact-email" value="" placeholder="Email*" class="mt-2"> <span id="contact-email-error"></span>
-                        <input type="number" id="contact-phone" value="" placeholder="Phone*" class="mt-2"><span id="contact-phone-error"></span>
-                        <div id="g-recaptcha-response" class="g-recaptcha mt-2" data-sitekey="6Lfi3aoZAAAAAFYdtzTJvh3URCyH4G3o6hIjaEu2"></div>
-                        <button type="submit" class="template-btn primary-btn border-0 mt-3" id="contactsubmit">Send Message<i class="fa-solid fa-chevron-right ms-2"></i></button>
-                     </form>
+                  <?php $contact_form = get_field('contact_form', 'option'); 
+                  if (!empty($contact_form)) :
+                     echo do_shortcode('[contact-form-7 id="'.$contact_form.'" html_class="footer-sb-form position-relative"]');
+                  endif; ?>                     
                   </div>
                </div>
             </div>
          </div>
          <div class="row small-footer">
             <div class="col-lg-6 col-md-6">
-               <p class="text-white">&copy; 2022 HourseTechAnalytics all right reserved </p>
+               <?php $copyright_text = get_field('copyright_text', 'option'); 
+                  if (!empty($copyright_text)) :  ?>
+                  <p class="text-white"><?php echo $copyright_text;?></p>
+                  <?php endif; ?>
             </div>
             <div class="col-lg-6 col-md-6">
+            <?php $social_media_links = get_field('social_media_links', 'option');
+                  if ($social_media_links) : ?>
                <div class="footer-widget footer-widget-1" style="margin: 0px !important">
                   <div class="footer-social mt-5" style="margin: 0px !important">
                      <ul class="social-nav mt-3" style="margin: 0px !important; display: flex; justify-content: end;">
-                        <li><a href="https://www.facebook.com/horsetechanalyticsHTA/?show_switched_toast=0&show_invite_to_follow=0&show_switched_tooltip=0&show_podcast_settings=0&show_community_transition=0&show_community_review_changes=0&show_follower_visibility_disclosure=0" class="rounded-circle overflow-hidden position-relative d-flex align-items-center justify-content-center text-white" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-                        <!-- <li><a href="#" class="rounded-circle overflow-hidden position-relative d-flex align-items-center justify-content-center text-white"><i class="fab fa-twitter"></i></a></li> -->
-                        <li><a href="https://www.instagram.com/accounts/login/?next=/horsetechanalytics/" class="rounded-circle overflow-hidden position-relative d-flex align-items-center justify-content-center text-white" target="_blank"><i class="fab fa-instagram"></i></a></li>
-                        <li><a href="https://www.linkedin.com/company/horsetech-analytics/" class="rounded-circle overflow-hidden position-relative d-flex align-items-center justify-content-center text-white" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+                        <?php if(!empty($social_media_links['facebook'])) : ?>
+                        <li>
+                           <a href="<?php echo esc_url($social_media_links['facebook']);?>" class="rounded-circle overflow-hidden position-relative d-flex align-items-center justify-content-center text-white" target="_blank">
+                              <i class="fab fa-facebook-f"></i>
+                           </a>
+                        </li>
+                        <?php endif; ?>
+
+                        <?php if(!empty($social_media_links['twitter'])) : ?>
+                        <li>
+                           <a href="<?php echo esc_url($social_media_links['twitter']);?>" class="rounded-circle overflow-hidden position-relative d-flex align-items-center justify-content-center text-white" target="_blank">
+                              <i class="fab fa-twitter"></i>
+                           </a>
+                        </li>
+                        <?php endif; ?>
+
+                        <?php if(!empty($social_media_links['instagram'])) : ?>
+                        <li>
+                           <a href="<?php echo esc_url($social_media_links['instagram']);?>" class="rounded-circle overflow-hidden position-relative d-flex align-items-center justify-content-center text-white" target="_blank">
+                              <i class="fab fa-instagram"></i>
+                           </a>
+                        </li>
+                        <?php endif; ?>
+
+                        <?php if(!empty($social_media_links['linkedin'])) : ?>
+                        <li>
+                           <a href="<?php echo esc_url($social_media_links['linkedin']);?>" class="rounded-circle overflow-hidden position-relative d-flex align-items-center justify-content-center text-white" target="_blank">
+                              <i class="fab fa-linkedin"></i>
+                           </a>
+                        </li>
+                        <?php endif; ?>
+
+                        <?php if(!empty($social_media_links['pinterest'])) : ?>
+                        <li>
+                           <a href="<?php echo esc_url($social_media_links['pinterest']);?>" class="rounded-circle overflow-hidden position-relative d-flex align-items-center justify-content-center text-white" target="_blank">
+                              <i class="fab fa-pinterest"></i>
+                           </a>
+                        </li>
+                        <?php endif; ?>
+
+                        <?php if(!empty($social_media_links['youtube'])) : ?>
+                        <li>
+                           <a href="<?php echo esc_url($social_media_links['youtube']);?>" class="rounded-circle overflow-hidden position-relative d-flex align-items-center justify-content-center text-white" target="_blank">
+                              <i class="fab fa-youtube"></i>
+                           </a>
+                        </li>
+                        <?php endif; ?>
                      </ul>
                   </div>
                </div>
+               <?php endif; ?>
             </div>
          </div>
       </div>
@@ -86,7 +157,7 @@
                <div class="col-12 pb-3 message-box d-none">
                   <div class="alert alert-danger"></div>
                </div>
-            <form method="POST" id="applyForm" class="contact-us-form" enctype="multipart/form-data">
+               <form method="POST" id="applyForm" class="contact-us-form" enctype="multipart/form-data">
                   <div class="row">
                       <div class="col-lg-12">
                           <div class="row g-4">

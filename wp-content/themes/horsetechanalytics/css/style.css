@@ -1030,3 +1030,15 @@ ul.tab-links li.active a:after {
   height: 200px;
 }
 .small-footer p {margin-bottom: 0px; margin-top: 5px;}
+
+
+/* PAVAN */
+.footer-widget .footer-sb-form input[type=email]{
+  width: 100%;
+  padding: 15px;
+  background-color: #293571;
+  border-radius: 5px;
+  border: 0;
+  color: #ffffff;
+  border: 1px solid #eee;
+}

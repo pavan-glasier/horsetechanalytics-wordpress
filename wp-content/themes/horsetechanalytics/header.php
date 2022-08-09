@@ -30,25 +30,78 @@
 			<div class="topbar">
 			<div class="container">
 				<div class="row align-item-center topbar1">
-				<div class="col-md-6">
-					<div class="topbar-left">
-						<p class="mb-0">hrd1@horsetechanalytics.com | +91 9512234566 </p>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="topbar-right text-end">
-						<div class="footer-widget footer-widget-1" style="margin: 0px !important">
-							<div class="footer-social mt-5" style="margin: 0px !important">
-							<ul class="social-nav mt-3" style="margin: 0px !important; display: flex; justify-content: end;">
-								<li><a href="https://www.facebook.com/horsetechanalyticsHTA/?show_switched_toast=0&show_invite_to_follow=0&show_switched_tooltip=0&show_podcast_settings=0&show_community_transition=0&show_community_review_changes=0&show_follower_visibility_disclosure=0" class="rounded-circle overflow-hidden position-relative d-flex align-items-center justify-content-center text-white" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-								<!-- <li><a href="#" class="rounded-circle overflow-hidden position-relative d-flex align-items-center justify-content-center text-white"><i class="fab fa-twitter"></i></a></li> -->
-								<li><a href="https://www.instagram.com/accounts/login/?next=/horsetechanalytics/" class="rounded-circle overflow-hidden position-relative d-flex align-items-center justify-content-center text-white" target="_blank"><i class="fab fa-instagram"></i></a></li>
-								<li><a href="https://www.linkedin.com/company/horsetech-analytics/" class="rounded-circle overflow-hidden position-relative d-flex align-items-center justify-content-center text-white" target="_blank"><i class="fab fa-linkedin"></i></a></li>
-							</ul>
-							</div>
+					<div class="col-md-6">
+						<div class="topbar-left">
+							<?php 
+							get_field('email', 'option');
+							get_field('phone', 'option');
+							?>
+							<p class="mb-0">
+								<?php echo $emailTopbar = (!empty(get_field('email', 'option'))) ? get_field('email', 'option').' &nbsp;|&nbsp;' : '' ; ?> 
+								<?php echo $phoneTopbar = (!empty(get_field('phone', 'option'))) ? get_field('phone', 'option') : '' ; ?> 
+							</p>
 						</div>
 					</div>
-				</div>
+					<div class="col-md-6">
+					<?php $social_media = get_field('social_media', 'option');
+                  		if ($social_media) : ?>
+						<div class="topbar-right text-end">
+							<div class="footer-widget footer-widget-1" style="margin: 0px !important">
+								<div class="footer-social mt-5" style="margin: 0px !important">
+								<ul class="social-nav mt-3" style="margin: 0px !important; display: flex; justify-content: end;">
+									<?php if(!empty($social_media['facebook'])) : ?>
+									<li>
+										<a href="<?php echo esc_url($social_media['facebook']);?>" class="rounded-circle overflow-hidden position-relative d-flex align-items-center justify-content-center text-white" target="_blank">
+											<i class="fab fa-facebook-f"></i>
+										</a>
+									</li>
+									<?php endif; ?>
+
+									<?php if(!empty($social_media['twitter'])) : ?>
+									<li>
+										<a href="<?php echo esc_url($social_media['twitter']);?>" class="rounded-circle overflow-hidden position-relative d-flex align-items-center justify-content-center text-white" target="_blank">
+											<i class="fab fa-twitter"></i>
+										</a>
+									</li>
+									<?php endif; ?>
+
+									<?php if(!empty($social_media['instagram'])) : ?>
+									<li>
+										<a href="<?php echo esc_url($social_media['instagram']);?>" class="rounded-circle overflow-hidden position-relative d-flex align-items-center justify-content-center text-white" target="_blank">
+											<i class="fab fa-instagram"></i>
+										</a>
+									</li>
+									<?php endif; ?>
+
+									<?php if(!empty($social_media['linkedin'])) : ?>
+									<li>
+										<a href="<?php echo esc_url($social_media['linkedin']);?>" class="rounded-circle overflow-hidden position-relative d-flex align-items-center justify-content-center text-white" target="_blank">
+											<i class="fab fa-linkedin"></i>
+										</a>
+									</li>
+									<?php endif; ?>
+
+									<?php if(!empty($social_media['pinterest'])) : ?>
+									<li>
+										<a href="<?php echo esc_url($social_media['pinterest']);?>" class="rounded-circle overflow-hidden position-relative d-flex align-items-center justify-content-center text-white" target="_blank">
+											<i class="fab fa-pinterest"></i>
+										</a>
+									</li>
+									<?php endif; ?>
+
+									<?php if(!empty($social_media['youtube'])) : ?>
+									<li>
+										<a href="<?php echo esc_url($social_media['youtube']);?>" class="rounded-circle overflow-hidden position-relative d-flex align-items-center justify-content-center text-white" target="_blank">
+											<i class="fab fa-youtube"></i>
+										</a>
+									</li>
+									<?php endif; ?>
+								</ul>
+								</div>
+							</div>
+						</div>
+						<?php endif; ?>
+					</div>
 				</div>
 			</div>
 			<div class="container">
@@ -63,22 +116,26 @@
                            if ( ! empty( $header_image ) ) :
                               ?>
                            <img src="<?php echo esc_url( $header_image ); ?>" class="logo" alt="<?php bloginfo( 'name' ); ?>" />
-                           <?php endif; ?>
+							<?php 
+							$logo_light = get_field('logo_light', 'option');
+							elseif( !empty( $logo_light ) ): ?>
+								<img src="<?php echo esc_url($logo_light['url']); ?>" class="logo logo-black" alt="<?php echo esc_attr($logo_light['alt']); ?>" />
+						   <?php endif; ?>
 						</a>
 					</div>
 				</div>
 				<div class="col-xl-9 col-lg-6 d-none d-lg-block">
 					<div class="nav-wrapper">
-					<?php $menu = get_field('menu', 'option');
-                    ?>
+					<?php $menu = get_field('menu', 'option'); ?>
 						<nav>
-                    <?php wp_nav_menu( array(
+						<?php 
+						wp_nav_menu( array(
                            'theme_location'    => $menu['value'],
                            'container'         => 'ul',
                            'menu_class'        => 'nav-menus',
                             )
-                       );
-                       ?>
+                       	);
+                       	?>
 						</nav>
 					</div>
 				</div>
@@ -95,48 +152,26 @@
 		<div class="mobile-menu position-fixed bg-white deep-shadow">
 			<button class="close-menu position-absolute"><i class="fa-solid fa-xmark"></i></button>
 			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="logo-wrapper">
-				<img src="<?php echo get_field('logo_dark', 'option');?>" alt="logo" 
-				class="logo logo-black">
+			<?php 
+			$logo_dark = get_field('logo_dark', 'option');
+			if( !empty( $logo_dark ) ): ?>
+				<img src="<?php echo esc_url($logo_dark['url']); ?>" class="logo logo-black" alt="<?php echo esc_attr($logo_dark['alt']); ?>" />
+			<?php endif; ?>
 			</a>
 			<nav class="mobile-menu-wrapper mt-40">
-				<ul>
-					<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a></li>
-					<li><a href="aboutus.php">About us</a></li>
-					<li class="has-submenu">
-						<a href="#">Product</a>
-						<ul class="menu-list">
-							<li>
-								<a href="consumer.php">
-								<div class="menu-list-wrapper d-flex align-items-center">
-									<div class="menu-list-content-right ms-3">
-										<h6>Consumer</h6>
-									</div>
-								</div>
-								</a>
-							</li>
-							<li>
-								<a href="merchant.php">
-								<div class="menu-list-wrapper d-flex align-items-center">
-									<div class="menu-list-content-right ms-3">
-										<h6>Merchant</h6>
-									</div>
-								</div>
-								</a>
-							</li>
-						</ul>
-					</li>
-					<li>
-						<a href="technology.php">Technology</a>
-					</li>
-					<li><a href="career.php">Career</a></li>
-					<li><a href="contactus.php">Contact us</a></li>
-					
-				</ul>
+				<?php 
+				wp_nav_menu( array(
+					'theme_location'    => $menu['value'],
+					'container'         => 'ul',
+					'menu_class'        => '',
+					)
+				);
+				?>
 			</nav>
 			<div class="contact-info mt-60">
 				<h4 class="mb-20">Contact Info</h4>
-				<p>+88 01682648101</p>
-				<p>info@horsetechanalytics.com</p>
+				<p><?php echo $emailTopbar1 = (!empty(get_field('email', 'option'))) ? get_field('email', 'option').' | ' : '' ; ?></p>
+				<p><?php echo $phoneTopbar1 = (!empty(get_field('phone', 'option'))) ? get_field('phone', 'option') : '' ; ?></p>
 				<div class="contact-social">
 				<a href="#"><i class="fab fa-facebook-f"></i></a>
 				<a href="#"><i class="fab fa-twitter"></i></a>
