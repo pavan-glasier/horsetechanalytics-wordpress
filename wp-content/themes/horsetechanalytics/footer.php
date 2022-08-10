@@ -157,52 +157,7 @@
                <div class="col-12 pb-3 message-box d-none">
                   <div class="alert alert-danger"></div>
                </div>
-               <form method="POST" id="applyForm" class="contact-us-form" enctype="multipart/form-data">
-                  <div class="row">
-                      <div class="col-lg-12">
-                          <div class="row g-4">
-                              <div class="col-md-6">
-                                  <div class="input-field">
-                                      <label for="name">Name<span style="color:red; font-size:20px !important;">*</span></label>
-                                      <input type="text" class="" name="name" id="apply-name" placeholder="John Doe">
-                                      <span id="apply-name-error"></span>
-                                  </div>
-                              </div>
-                              <div class="col-md-6">
-                                  <div class="input-field">
-                                      <label for="email">Email address<span style="color:red; font-size:20px !important;">*</span></label>
-                                      <input type="email" class="" name="email" id="apply-email" placeholder="example@domain.com">
-                                      <span id="apply-email-error"></span>
-                                  </div>
-                              </div>
-                              <div class="col-md-6">
-                                  <div class="input-field">
-                                      <label for="phone">Contact Number<span style="color:red; font-size:20px !important;">*</span></label>
-                                      <input type="text" class="" name="phone" id="apply-phone" placeholder="+1-999-999-9999">
-                                      <span id="apply-phone-error"></span>
-                                  </div>
-                              </div>
-                              <div class="col-md-6">
-                                  <div class="input-field">
-                                      <label for="subject">Current Designation<span style="color:red; font-size:20px !important;">*</span></label>
-                                      <input type="text" class="" name="subject" id="apply-subject" placeholder="Java Developer">
-                                      <span id="apply-designation-error"></span>
-                                  </div>
-                              </div>
-                              <div class="col-md-12">
-                                  <div class="input-field">
-                                      <label for="message">Upload your resume<span style="color:red; font-size:20px !important;">*</span></label>
-                                      <input class="form-control" type="file" id="formFile">
-                                  </div>
-                              </div>
-                              <div id="g-recaptcha-response" class="g-recaptcha" data-sitekey="6Lfi3aoZAAAAAFYdtzTJvh3URCyH4G3o6hIjaEu2"></div>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="submit-btn text-center mt-4">
-                      <button type="submit" class="template-btn primary-btn border-0 rounded-pill" id="applysubmit">Submit<i class="fa-solid fa-chevron-right ms-2"></i></button>
-                  </div>
-              </form>
+               <?php echo do_shortcode('[contact-form-7 id="229" title="Career Form"]');?>
             </div>
          </div>
       </div>
